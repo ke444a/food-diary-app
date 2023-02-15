@@ -33,7 +33,7 @@ const Meal = (props) => {
                         {fetchResult.isSuccess && mealData.length > 0 && mealData.map(food => {
                             return (
                                 <tr key={food.id}>
-                                    <td className="w-[40%]">{food.name}</td>
+                                    <td className="w-[40%]">{food.meal_name}</td>
                                     <td>{food.protein_amount}</td>
                                     <td>{food.fat_amount}</td>
                                     <td>{food.carbs_amount}</td>
