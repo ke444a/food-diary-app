@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'knox',
     'corsheaders',
     'food_diary_app.meal',
-    'food_diary_app.accounts',
+    # 'food_diary_app.accounts',
+    'food_diary_app.accounts.apps.AccountsConfig',
 ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
@@ -145,3 +146,5 @@ AUTHENTICATION_BACKENDS = [
     'food_diary_app.accounts.authentication.EmailBackend',
     'django.contrib.auth.backends.ModelBackend'
 ]
+
+AUTH_USER_MODEL = 'accounts.CustomUser'

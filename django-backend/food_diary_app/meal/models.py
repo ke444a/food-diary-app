@@ -9,7 +9,7 @@ class Meal(models.Model):
         ('Snack', 'Snack'),
     )
 
-    name = models.CharField(max_length=300)
+    meal_name = models.CharField(max_length=300)
     meal_type = models.CharField(
         choices=MEAL_TYPE_CHOICES,
         max_length=20,
