@@ -4,15 +4,19 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const loginMutation = useMutation(
-        formData => axios.post("http://127.0.0.1:8000/food_api/v1/login", formData).then(response => console.log(response)), {
-            onSuccess: () => {
-                navigate("/profile");
+        formData => axios.post("http://127.0.0.1:8000/food_api/v1/login", formData).then(response => response.data), {
+            onSuccess: (data) => {
+                const userData = data.user;
+                userData["token"] = data.token;
+                localStorage.setItem("user", JSON.stringify(userData));
+                navigate("../");
             }
         }
     );
@@ -20,6 +24,13 @@ const Login = () => {
     const loginUser = (loginData) => {
         loginMutation.mutate(loginData);
     };
+
+    useEffect(() => {
+        const loggedInUser = JSON.parse(localStorage.getItem("user"));
+        if (loggedInUser) {
+            navigate("../");
+        }
+    }, []);
 
     return (
         <main className="flex-grow pt-6 sm:pt-8 md:pt-12 2xl:pt-14">

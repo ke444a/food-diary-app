@@ -26,8 +26,8 @@ module.exports = {
             colors: {
                 "white-new": "#F9F4F4",
                 "dark": "#141010",
-                "table-header": "#293241",
-                "background": "#C1DBE3",
+                "table-header": "#CC5E3F",
+                "background": "#F0E6EF",
                 "form": "#FF0022",
             },
             fontFamily: {

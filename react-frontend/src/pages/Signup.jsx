@@ -4,15 +4,19 @@ import axios from "axios";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 
 const Signup = () => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const signupMutation = useMutation(
-        formData => axios.post("http://127.0.0.1:8000/food_api/v1/register", formData).then(response => console.log(response)), {
-            onSuccess: () => {
-                navigate("/profile");
+        formData => axios.post("http://127.0.0.1:8000/food_api/v1/register", formData).then(response => response.data), {
+            onSuccess: (data) => {
+                const userData = data.user;
+                userData["token"] = data.token;
+                localStorage.setItem("user", JSON.stringify(userData));
+                navigate("../");
             }
         }
     );
@@ -20,6 +24,13 @@ const Signup = () => {
     const registerUser = (signupData) => {
         signupMutation.mutate(signupData);
     };
+
+    useEffect(() => {
+        const loggedInUser = JSON.parse(localStorage.getItem("user"));
+        if (loggedInUser) {
+            navigate("../");
+        }
+    }, []);
 
     return (
         <main className="flex-grow pt-6 sm:pt-8 md:pt-12 2xl:pt-14">
@@ -40,6 +51,20 @@ const Signup = () => {
                         placeholder="Email address"
                         className="w-full p-3 rounded-md focus:outline-none mb-3 border-2 border-[#93A8AC]"
                     />
+                    <div className="flex justify-between space-x-2 w-full mb-3">
+                        <input
+                            type="text"
+                            {...register("first_name", { required: true })}
+                            placeholder="First name"
+                            className="w-full p-3 rounded-md focus:outline-none border-2 border-[#93A8AC]"
+                        />
+                        <input
+                            type="text"
+                            {...register("last_name", { required: true })}
+                            placeholder="Last name"
+                            className="w-full p-3 rounded-md focus:outline-none border-2 border-[#93A8AC]"
+                        />
+                    </div>
                     <input
                         type="password"
                         {...register("password", { required: true })}
