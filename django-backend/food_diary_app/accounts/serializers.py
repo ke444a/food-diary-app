@@ -7,7 +7,7 @@ from .models import CustomUser
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('id', 'email', 'first_name', 'last_name')
+        fields = ('id', 'email', 'first_name', 'last_name', 'calories_goal')
 
 
 class RegisterUserSerializer(serializers.ModelSerializer):
@@ -37,6 +37,25 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         )
         return user
     
+class UpdateUserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(required=True, validators=[
+                                   UniqueValidator(queryset=CustomUser.objects.all())])
+    first_name = serializers.CharField(required=True)
+    last_name = serializers.CharField(required=True)
+    calories_goal = serializers.IntegerField(required=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'email', 'first_name', 'last_name', 'calories_goal')
+
+    def update(self, instance, validated_data):
+        instance.email = validated_data['email']
+        instance.first_name = validated_data['first_name']
+        instance.last_name = validated_data['last_name']
+        instance.calories_goal = validated_data['calories_goal']
+        instance.save()
+        return instance
+
 class AuthTokenSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(
