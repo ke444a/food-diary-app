@@ -39,9 +39,3 @@ class LoginUserView(KnoxLoginView, generics.GenericAPIView):
             "token": AuthToken.objects.create(user=user)[1]
         })
     
-# class GetUserView(generics.RetrieveAPIView):
-#     permission_classes = (permissions.IsAuthenticated,)
-#     serializer_class = UserSerializer
-
-#     def get_object(self):
-#         return self.request.user
