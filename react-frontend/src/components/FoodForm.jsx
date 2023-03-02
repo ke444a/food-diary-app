@@ -18,7 +18,12 @@ const FoodForm = (props) => {
     });
     const queryClient = useQueryClient();
     const foodMutation = useMutation(
-        formData => axios.post("http://127.0.0.1:8000/food_api/v1/meal/", formData).then(response => console.log(response)), {
+        formData => axios.post("/api/logs/", formData, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            }
+        }), 
+        {
             onSuccess: () => {
                 queryClient.invalidateQueries(["meal"]);
             }
@@ -27,7 +32,10 @@ const FoodForm = (props) => {
 
     const submitFoodForm = (foodData) => {
         props.setIsFormOpen(false);
-        foodMutation.mutate(foodData);
+        foodMutation.mutate({
+            user: props.userId,
+            meal: foodData
+        });
     };
 
     return (
@@ -51,10 +59,10 @@ const FoodForm = (props) => {
                             defaultValue=""
                         >
                             <option value="" disabled>Select meal type...</option>
-                            <option value="Breakfast">Breakfast</option>
-                            <option value="Lunch">Lunch</option>
-                            <option value="Dinner">Dinner</option>
-                            <option value="Snack">Snack</option>
+                            <option value="BREAKFAST">Breakfast</option>
+                            <option value="LUNCH">Lunch</option>
+                            <option value="DINNER">Dinner</option>
+                            <option value="SNACK">Snack</option>
                         </select>
                         <div className="flex w-full space-x-2 mb-3">
                             <div>

@@ -6,7 +6,11 @@ export default defineConfig({
     plugins: [react()],
     server: {
         proxy: {
-            "food-api": "http://127.0.0.1:8000/apis/v1"
+            "/api": {
+                target: "http://127.0.0.1:8000/food_api/v1",
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api/, ""),
+            }
         }
     }
 });

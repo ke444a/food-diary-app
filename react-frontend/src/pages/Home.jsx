@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
         const closeForm = (event) => {
@@ -41,10 +41,11 @@ const Home = () => {
         <main className="flex-grow pt-4 md:pt-10 2xl:pt-12">
             <div className="container flex">
                 <InfoCard 
-                    full_name={user.first_name + " " + user.last_name}
-                    calories_goal={user.calories_goal}
+                    fullName={user.first_name + " " + user.last_name}
+                    caloriesGoal={user.calories_goal}
+                    userId={user.id}
                 />
-                {isFormOpen && <FoodForm setIsFormOpen={setIsFormOpen} /> }
+                {isFormOpen && <FoodForm setIsFormOpen={setIsFormOpen} userId={user.id} /> }
                 <div className="ml-5 w-full">
                     <button
                         onClick={() => setIsFormOpen(true)}
@@ -52,10 +53,10 @@ const Home = () => {
                         <FontAwesomeIcon className="mr-2 text-[#13620C]" icon={faPlus} />
                             Add food
                     </button>
-                    <Meal mealType={"Breakfast"} icon={faMugHot} />
-                    <Meal mealType={"Lunch"} icon={faBowlFood} />
-                    <Meal mealType={"Dinner"} icon={faDrumstickBite} />
-                    <Meal mealType={"Snack"} icon={faAppleWhole} />
+                    <Meal mealType={"Breakfast"} icon={faMugHot} userId={user.id} />
+                    <Meal mealType={"Lunch"} icon={faBowlFood} userId={user.id} />
+                    <Meal mealType={"Dinner"} icon={faDrumstickBite} userId={user.id} />
+                    <Meal mealType={"Snack"} icon={faAppleWhole} userId={user.id} />
                 </div>
             </div>
         </main>

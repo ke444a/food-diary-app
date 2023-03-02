@@ -11,11 +11,10 @@ const Signup = () => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const signupMutation = useMutation(
-        formData => axios.post("http://127.0.0.1:8000/food_api/v1/register", formData).then(response => response.data), {
+        formData => axios.post("/api/auth/register/", formData).then(response => response.data), {
             onSuccess: (data) => {
-                const userData = data.user;
-                userData["token"] = data.token;
-                localStorage.setItem("user", JSON.stringify(userData));
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
                 navigate("../");
             }
         }
