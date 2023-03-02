@@ -6,7 +6,6 @@ import { useState } from "react";
 import axios from "axios";
 
 const InfoCard = (props) => {
-    const [date, setDate] = useState(new Date().getFullYear().toString() + "-" + (new Date().getMonth() + 1).toString().padStart(2, "0") + "-" + new Date().getDate().toString().padStart(2, "0"));
     const [caloriesTotal, setCaloriesTotal] = useState(0);
     const [proteinTotal, setProteinTotal] = useState(0);
     const [fatTotal, setFatTotal] = useState(0);
@@ -14,12 +13,12 @@ const InfoCard = (props) => {
 
     const fetchResult = useQuery(
         {
-            queryKey: ["logs", date, props.userId],
+            queryKey: ["logs", props.date, props.userId],
             queryFn: () => axios.get("/api/logs/",
                 {
                     params: { 
                         user_id: props.userId, 
-                        // date: date
+                        date: props.date
                     },
                     headers: {
                         "Authorization": `Token ${localStorage.getItem("token")}`

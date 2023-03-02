@@ -23,11 +23,13 @@ class LogListView(generics.ListCreateAPIView):
         queryset = Log.objects.all()
         user_id = self.request.query_params.get('user_id')
         meal_type = self.request.query_params.get('meal_type', None)
-        date = self.request.query_params.get('date', None)
+        date = self.request.query_params.get('date', None).split('T')[0]
         if date and meal_type:
             queryset = queryset.filter(user=User.objects.get(id=user_id), date=date, meal__meal_type=meal_type)
         elif meal_type:
             queryset = queryset.filter(user=User.objects.get(id=user_id), meal__meal_type=meal_type)
+        elif date:
+            queryset = queryset.filter(user=User.objects.get(id=user_id), date=date)
         else:
             queryset = queryset.filter(user=User.objects.get(id=user_id))
         return queryset

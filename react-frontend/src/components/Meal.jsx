@@ -5,11 +5,11 @@ import axios from "axios";
 const Meal = (props) => {
     const {data: logsData, ...fetchResult} = useQuery(
         {
-            queryKey: ["meal", props.mealType],
+            queryKey: ["meal", props.mealType, props.date],
             queryFn: () => axios.get("/api/logs/", 
                 { 
                     params: { 
-                        user_id: props.userId, meal_type: props.mealType.toUpperCase()
+                        user_id: props.userId, meal_type: props.mealType.toUpperCase(), date: props.date
                     },
                     headers: {
                         "Authorization": `Token ${localStorage.getItem("token")}`
