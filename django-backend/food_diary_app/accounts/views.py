@@ -4,9 +4,11 @@ from rest_framework.response import Response
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
 from django.contrib.auth import login
+from rest_framework.parsers import MultiPartParser, FormParser
 
 class RegisterUserView(generics.GenericAPIView):
     serializer_class = RegisterUserSerializer
+    parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -21,6 +23,7 @@ class RegisterUserView(generics.GenericAPIView):
 class UpdateUserView(generics.RetrieveUpdateAPIView):
     serializer_class = UpdateUserSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    parser_classes = (MultiPartParser, FormParser)
 
     def get_object(self):
         return self.request.user

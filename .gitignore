@@ -2,5 +2,5 @@ app_env/
 node_modules/
 __pycache__/
 migrations/
-media/profile_images/
+media/
 !media/profile_images/default.jpg
