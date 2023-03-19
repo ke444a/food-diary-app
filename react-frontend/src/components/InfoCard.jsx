@@ -13,12 +13,12 @@ const InfoCard = (props) => {
 
     const fetchResult = useQuery(
         {
-            queryKey: ["logs", props.date, props.userId],
+            queryKey: ["logs", props.date, props.user.id],
             queryFn: () => axios.get("/api/logs/",
                 {
                     params: { 
-                        user_id: props.userId, 
-                        date: props.date
+                        user_id: props.user.id, 
+                        date: props.date.toISOString().split("T")[0]
                     },
                     headers: {
                         "Authorization": `Token ${localStorage.getItem("token")}`
@@ -40,37 +40,39 @@ const InfoCard = (props) => {
     );
 
     return (
-        <div className="relative w-1/3 bg-white-new rounded-lg h-fit">
-            <div className="flex flex-col justify-center px-4 py-6 text-center">
-                <Link to="/profile" className="absolute top-6 right-4">
-                    <FontAwesomeIcon icon={faPenToSquare} fixedWidth />
+        <div className="relative w-[60%] min-[500px]:w-1/3 2xl:w-1/4 bg-white-new rounded-lg h-fit drop-shadow-md mb-4 min-[500px]:mb-0">
+            <div className="flex flex-col justify-center px-2 lg:px-4 py-3 min-[500px]:py-5 md:py-6 text-center">
+                <Link to="/profile" className="hidden min-[500px]:block absolute top-4 right-1 sm:top-6 sm:right-2 lg:right-4 transition-transform hover:scale-105">
+                    <FontAwesomeIcon className="text-sm lg:text-base" icon={faPenToSquare} fixedWidth />
                 </Link>
-                <img className="w-48 h-48 rounded-[50%] mb-3 self-center" src="https://picsum.photos/200" />
-                <h1 className="text-lg lg:text-xl font-medium font-heading mb-4">{props.fullName}</h1>
+                <img className="hidden min-[500px]:block w-20 h-20 min-[500px]:w-auto min-[500px]:h-auto md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-[50%] mb-2 md:mb-3 self-center object-cover" src={props.user.profile_img} />
+                <h1 className="hidden min-[500px]:block text-base md:text-lg lg:text-xl font-medium font-heading mb-4">{props.fullName}</h1>
                 { fetchResult.isSuccess && (
                     <>
-                        <div className="flex justify-between -mb-1">
-                            <p>{caloriesTotal}</p>
-                            <p>{props.caloriesGoal}</p>
-                        </div>
-                        <div className="flex justify-between text-sm opacity-50 leading-4 mb-3">
-                            <p>Total consumed</p>
-                            <p>Daily limit</p>
+                        <div className="flex justify-between leading-4 mb-3">
+                            <div className="flex flex-col mr-1">
+                                <p className="text-sm md:text-base">{caloriesTotal}</p>
+                                <p className="text-xs lg:text-sm opacity-50 leading-3">Total consumed</p>
+                            </div>
+                            <div className="flex flex-col">
+                                <p className="text-sm md:text-base">{props.caloriesGoal}</p>
+                                <p className="text-xs lg:text-sm opacity-50 leading-3">Daily limit</p>
+                            </div>
                         </div>
                         <progress id="calories-bar" className="w-full h-2" value={caloriesTotal} max={props.caloriesGoal}></progress>
-                        <label htmlFor="calories-bar" className="text-sm text-left">{(caloriesTotal/props.caloriesGoal*100).toFixed(0)}%</label>
-                        <div className="flex justify-around mt-4">
+                        <label htmlFor="calories-bar" className="text-xs md:text-sm text-left">{(caloriesTotal/props.caloriesGoal*100).toFixed(0)}%</label>
+                        <div className="flex space-x-1 min-[500px]:space-x-1 min-[500px]:flex-col min-[500px]:space-y-2 md:space-y-0 md:flex-row justify-around mt-2 md:mt-4">
                             <div>
-                                <h4 className="font-medium">{proteinTotal} g</h4>
-                                <p className="text-sm opacity-50">Protein</p>
+                                <h4 className="font-medium text-sm md:text-base">{proteinTotal}</h4>
+                                <p className="text-xs md:text-sm opacity-50 leading-3">Protein (g)</p>
                             </div>
                             <div>
-                                <h4 className="font-medium">{fatTotal} g</h4>
-                                <p className="text-sm opacity-50">Fat</p>
+                                <h4 className="font-medium text-sm md:text-base">{fatTotal}</h4>
+                                <p className="text-xs md:text-sm opacity-50 leading-3">Fat (g)</p>
                             </div>
-                            <div>
-                                <h4 className="font-medium">{carbsTotal} g</h4>
-                                <p className="text-sm opacity-50">Carbs</p>
+                            <div> 
+                                <h4 className="font-medium text-sm md:text-base">{carbsTotal}</h4>
+                                <p className="text-xs md:text-sm opacity-50 leading-3">Carbs (g)</p>
                             </div>
                         </div>
                     </>

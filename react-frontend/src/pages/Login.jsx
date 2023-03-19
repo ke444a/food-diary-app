@@ -33,22 +33,21 @@ const Login = () => {
 
     return (
         <main className="flex-grow pt-6 sm:pt-8 md:pt-12 2xl:pt-14">
-            <div className="flex flex-col justify-center items-center">
+            <div className="container flex flex-col justify-center items-center mb-6">
                 <img src={loginImg} className="h-14 mb-2" />
-                <h1 className="font-bold font-heading text-2xl lg:text-3xl 2xl:text-4xl mb-4">Login to your page</h1>
-                <p className="font-medium mb-5 md:mb-8 xl:mb-12">Don&apos;t have an account yet? <span className="text-form"><Link to="../signup">Signup</Link></span></p>
-                <form onSubmit={handleSubmit(loginUser)} className="max-w-[80%] sm:max-w-[60%] lg:max-w-[40%] w-full">
+                <h1 className="font-bold font-heading text-lg min-[500px]:text-2xl lg:text-3xl 2xl:text-4xl mb-5 md:mb-8 xl:mb-12 min-[500px]:pb-1 border-b-2 border-dark">Login to your page</h1>
+                <form onSubmit={handleSubmit(loginUser)} className="max-w-[80%] sm:max-w-[60%] lg:max-w-[50%] w-full">
                     <input 
                         type="email"
                         {...register("email", { required: true })}
                         placeholder="Email address"
-                        className="w-full p-3 rounded-md focus:outline-none mb-3 border-2 border-[#93A8AC]"
+                        className="w-full p-3 rounded-md focus:outline-none mb-3 border-2 border-custom-gray"
                     />
                     <input
                         type="password"
                         {...register("password", { required: true })}
                         placeholder="Password"
-                        className="w-full p-3 rounded-md focus:outline-none mb-5 border-2 border-[#93A8AC]"
+                        className="w-full p-3 rounded-md focus:outline-none mb-5 border-2 border-custom-gray"
                     />
                     <button
                         className="w-full p-3 rounded-md bg-form text-white font-bold transition-transform hover:scale-105"
@@ -56,6 +55,7 @@ const Login = () => {
                         Login
                     </button>
                 </form>
+                <p className="font-medium mt-3 text-center leading-5 min-[500px]:leading-6">Don&apos;t have an account yet? <span className="text-form underline"><Link to="../signup">Signup</Link></span></p>
             </div>
         </main>
     );
