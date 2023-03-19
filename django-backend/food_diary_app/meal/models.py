@@ -42,7 +42,7 @@ class Log(models.Model):
         return f'{self.user.email} - {self.date}'
 
 
-class Favorites(models.Model):
+class Favorite(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -53,9 +53,8 @@ class Favorites(models.Model):
         on_delete=models.CASCADE,
         related_name='favorites',
     )
+    serving_size = models.CharField(blank=True, null=True, max_length=100)
+    serving_weight = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
         return f'{self.user.email} - {self.meal.meal_name}'
-    
-    class Meta:
-        verbose_name_plural = 'Favorites'

@@ -6,10 +6,6 @@ def upload_to(instance, filename):
     user_email = instance.email.split('@')[0].replace('.', '-')
     ext = filename.split('.')[-1]
     uploaded_filename = f'{user_email}.{ext}'
-
-    # if instance._meta.model.objects.filter(profile_img=uploaded_filename).exists():
-    #     old_file = instance._meta.model.objects.get(profile_img=uploaded_filename)
-    #     old_file.delete()
     return f'profile_images/{uploaded_filename}'
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):

@@ -1,4 +1,4 @@
-from .models import Meal, Log, Favorites
+from .models import Meal, Log, Favorite
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
@@ -25,11 +25,11 @@ class LogSerializer(serializers.ModelSerializer):
         log = Log.objects.create(meal=meal, date=date, **validated_data)
         return log
     
-class FavoritesSerializer(serializers.ModelSerializer):
+class FavoriteSerializer(serializers.ModelSerializer):
     meal = MealSerializer()
 
     class Meta:
-        model = Favorites
+        model = Favorite
         fields = '__all__'
 
     def create(self, validated_data):
@@ -37,5 +37,12 @@ class FavoritesSerializer(serializers.ModelSerializer):
         meal_serializer = MealSerializer(data=meal_data)
         meal_serializer.is_valid(raise_exception=True)
         meal = meal_serializer.save()
-        favorite = Favorites.objects.create(meal=meal, **validated_data)
+        favorite = Favorite.objects.create(meal=meal, **validated_data)
         return favorite
+
+    def update(self, instance, validated_data):
+        meal_data = validated_data.pop('meal')
+        meal_serializer = MealSerializer(instance=instance.meal, data=meal_data)
+        meal_serializer.is_valid(raise_exception=True)
+        meal_serializer.save()
+        return super().update(instance, validated_data)

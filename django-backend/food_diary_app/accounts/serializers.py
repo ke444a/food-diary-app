@@ -48,7 +48,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(required=True)
     last_name = serializers.CharField(required=True)
     calories_goal = serializers.IntegerField(required=True)
-    profile_img = serializers.ImageField(required=False)
+    profile_img = serializers.ImageField(required=False, allow_null=True)
 
     class Meta:
         model = CustomUser

@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions, generics
-from .serializers import MealSerializer, LogSerializer, FavoritesSerializer
-from .models import Meal, Log, Favorites
+from .serializers import MealSerializer, LogSerializer, FavoriteSerializer
+from .models import Meal, Log, Favorite
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -41,16 +41,16 @@ class LogViewset(viewsets.ModelViewSet):
     queryset = Log.objects.all()
 
     
-class FavoritesListView(generics.ListCreateAPIView):
+class FavoriteListView(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
-    serializer_class = FavoritesSerializer
+    serializer_class = FavoriteSerializer
 
     def get_queryset(self):
         user_id = self.request.query_params.get('user_id')
-        queryset = Favorites.objects.filter(user=User.objects.get(id=user_id))
+        queryset = Favorite.objects.filter(user=User.objects.get(id=user_id))
         return queryset
     
-class FavoritesViewset(viewsets.ModelViewSet):
+class FavoriteViewset(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
-    serializer_class = FavoritesSerializer
-    queryset = Favorites.objects.all()
+    serializer_class = FavoriteSerializer
+    queryset = Favorite.objects.all()
