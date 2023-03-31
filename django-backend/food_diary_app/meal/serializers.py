@@ -1,6 +1,8 @@
 from .models import Meal, Log, Favorite
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+import requests
+import os
 
 User = get_user_model()
 
@@ -18,6 +20,7 @@ class LogSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         meal_data = validated_data.pop('meal')
+        meal_data["meal_image"]  = get_meal_image(meal_data["meal_name"])
         date = validated_data.pop('date')
         meal_serializer = MealSerializer(data=meal_data)
         meal_serializer.is_valid(raise_exception=True)
@@ -34,6 +37,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         meal_data = validated_data.pop('meal')
+        meal_data["meal_image"]  = get_meal_image(meal_data["meal_name"])
         meal_serializer = MealSerializer(data=meal_data)
         meal_serializer.is_valid(raise_exception=True)
         meal = meal_serializer.save()
@@ -46,3 +50,14 @@ class FavoriteSerializer(serializers.ModelSerializer):
         meal_serializer.is_valid(raise_exception=True)
         meal_serializer.save()
         return super().update(instance, validated_data)
+
+
+def get_meal_image(meal_name):
+    API_ENDPOINT_URL = "https://api.edamam.com/api/food-database/v2/parser"
+    params = {
+        "app_id": os.environ['APP_ID'],
+        "app_key": os.environ['APP_KEY'],
+        "ingr": meal_name
+    }
+    response = requests.get(API_ENDPOINT_URL, params=params)
+    return response.json()["parsed"][0]["food"]["image"]

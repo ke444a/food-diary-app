@@ -6,6 +6,7 @@ User = get_user_model()
 
 class Meal(models.Model):
     meal_name = models.CharField(max_length=300)
+    meal_image = models.URLField(null=True, blank=True)
     protein_amount = models.DecimalField(max_digits=5, decimal_places=1)
     fat_amount = models.DecimalField(max_digits=5, decimal_places=1)
     carbs_amount = models.DecimalField(max_digits=5, decimal_places=1)
