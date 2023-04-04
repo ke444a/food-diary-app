@@ -1,6 +1,7 @@
 app_env/
 node_modules/
 __pycache__/
-migrations/
 media/
 !media/profile_images/default.jpg
+.env
+.vscode/
