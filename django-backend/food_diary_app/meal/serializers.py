@@ -60,4 +60,8 @@ def get_meal_image(meal_name):
         "ingr": meal_name
     }
     response = requests.get(API_ENDPOINT_URL, params=params)
-    return response.json()["parsed"][0]["food"]["image"]
+
+    image = os.environ['DEFAULT_MEAL_IMAGE_URL']
+    if (len(response.json()["parsed"])!=0):
+        image = response.json()["parsed"][0]["food"]["image"]
+    return image
