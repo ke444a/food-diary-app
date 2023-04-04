@@ -59,9 +59,6 @@ const Favorites = () => {
                 })
                 .then((res) => res.data),
         queryKey: "favorites",
-        onSuccess: () => {
-            queryClient.invalidateQueries("meal");
-        },
         onError: (error) => {
             if (error.response.status === 401) {
                 localStorage.removeItem("token");
@@ -118,6 +115,9 @@ const Favorites = () => {
                     Authorization: `Token ${localStorage.getItem("token")}`,
                 },
             }),
+        onSuccess: () => {
+            queryClient.invalidateQueries("favorites");
+        }
     });
 
     const logFavoriteMutation = useMutation({
@@ -135,7 +135,7 @@ const Favorites = () => {
                 },
             }),
         onSuccess: () => {
-            queryClient.invalidateQueries("favorites");
+            queryClient.invalidateQueries("meal");
         },
     });
 
