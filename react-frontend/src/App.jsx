@@ -8,7 +8,12 @@ import Logout from "./pages/Logout";
 // import ErrorPage from "./pages/ErrorPage";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faMugHot, faBowlFood, faDrumstickBite, faAppleWhole } from "@fortawesome/free-solid-svg-icons";
+import {
+    faMugHot,
+    faBowlFood,
+    faDrumstickBite,
+    faAppleWhole,
+} from "@fortawesome/free-solid-svg-icons";
 
 library.add(faMugHot, faBowlFood, faDrumstickBite, faAppleWhole);
 
@@ -16,7 +21,7 @@ const App = () => {
     const location = useLocation();
 
     return (
-        <div className="flex min-h-screen flex-col font-body overflow-hidden text-dark bg-background">
+        <div className="flex min-h-screen flex-col overflow-hidden bg-background font-body text-dark">
             <Header key={location.pathname} />
             <Routes>
                 <Route path="/" element={<Home />} />

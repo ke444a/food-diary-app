@@ -36,13 +36,17 @@ const Header = () => {
     return (
         <header className="bg-white-new drop-shadow-md">
             <div className="container">
-                <nav className="flex justify-between items-center sm:py-1 md:py-2 2xl:py-3">
-                    <Link to="/" className="flex items-center cursor-pointer ">
-                        <img src={logo} className="w-16 h-16 mr-1 sm:mr-3" />
-                        <h2 className="text-base leading-4 sm:text-lg sm:leading-5 transition 2xl:text-xl font-heading font-bold 2xl:leading-6">Food<br />Diary</h2>
+                <nav className="flex items-center justify-between sm:py-1 md:py-2 2xl:py-3">
+                    <Link to="/" className="flex cursor-pointer items-center ">
+                        <img src={logo} className="mr-1 h-16 w-16 sm:mr-3" />
+                        <h2 className="font-heading text-base font-bold leading-4 transition sm:text-lg sm:leading-5 2xl:text-xl 2xl:leading-6">
+                            Food
+                            <br />
+                            Diary
+                        </h2>
                     </Link>
                     {isSmallScreen ? (
-                        <div className="relative z-20 text-black ml-auto">
+                        <div className="relative z-20 ml-auto text-black">
                             <Hamburger
                                 size={isSmallScreen ? 20 : 25}
                                 toggled={isHamburgerOpen}
@@ -51,17 +55,14 @@ const Header = () => {
                             />
                         </div>
                     ) : (
-                        <ul className="text-sm md:text-base flex font-medium items-center space-x-8 md:space-x-10">
+                        <ul className="flex items-center space-x-8 text-sm font-medium md:space-x-10 md:text-base">
                             <li>
                                 <NavLink
                                     to="/"
-                                    className="cursor-pointer transition opacity-70 hover:opacity-100"
-                                    style={
-                                        ({ isActive }) => (
-                                            {
-                                                opacity: isActive && "1"
-                                            }
-                                        )}
+                                    className="cursor-pointer opacity-70 transition hover:opacity-100"
+                                    style={({ isActive }) => ({
+                                        opacity: isActive && "1",
+                                    })}
                                 >
                                     Logs
                                 </NavLink>
@@ -69,13 +70,10 @@ const Header = () => {
                             <li>
                                 <NavLink
                                     to="/favorites"
-                                    className="cursor-pointer transition opacity-70 hover:opacity-100"
-                                    style={
-                                        ({ isActive }) => (
-                                            {
-                                                opacity: isActive && "1"
-                                            }
-                                        )}
+                                    className="cursor-pointer opacity-70 transition hover:opacity-100"
+                                    style={({ isActive }) => ({
+                                        opacity: isActive && "1",
+                                    })}
                                 >
                                     Favorites
                                 </NavLink>
@@ -83,13 +81,10 @@ const Header = () => {
                             <li>
                                 <NavLink
                                     to="/profile"
-                                    className="cursor-pointer transition opacity-70 hover:opacity-100"
-                                    style={
-                                        ({ isActive }) => (
-                                            {
-                                                opacity: isActive && "1"
-                                            }
-                                        )}
+                                    className="cursor-pointer opacity-70 transition hover:opacity-100"
+                                    style={({ isActive }) => ({
+                                        opacity: isActive && "1",
+                                    })}
                                 >
                                     Profile
                                 </NavLink>
@@ -97,13 +92,10 @@ const Header = () => {
                             <li>
                                 <NavLink
                                     to={isLoggedIn ? "/logout" : "/login"}
-                                    className="cursor-pointer transition opacity-70 hover:opacity-100"
-                                    style={
-                                        ({ isActive }) => (
-                                            {
-                                                opacity: isActive && "1"
-                                            }
-                                        )}
+                                    className="cursor-pointer opacity-70 transition hover:opacity-100"
+                                    style={({ isActive }) => ({
+                                        opacity: isActive && "1",
+                                    })}
                                     onClick={() => {
                                         if (isLoggedIn) {
                                             setIsLoggedIn(false);
@@ -113,7 +105,9 @@ const Header = () => {
                                                 method: "post",
                                                 url: "api/auth/logout/",
                                                 headers: {
-                                                    "Authorization": `Token ${localStorage.getItem("token")}`,
+                                                    Authorization: `Token ${localStorage.getItem(
+                                                        "token"
+                                                    )}`,
                                                 },
                                             });
                                         }
@@ -127,17 +121,14 @@ const Header = () => {
                 </nav>
 
                 {isHamburgerOpen && isSmallScreen && (
-                    <ul className="py-4 text-sm flex font-medium items-center animate-fade-in space-x-6 border-t-[1px] border-dark">
+                    <ul className="flex animate-fade-in items-center space-x-6 border-t-[1px] border-dark py-4 text-sm font-medium">
                         <li>
                             <NavLink
                                 to="/"
-                                className="cursor-pointer transition opacity-70 hover:opacity-100"
-                                style={
-                                    ({ isActive }) => (
-                                        {
-                                            opacity: isActive && "1"
-                                        }
-                                    )}
+                                className="cursor-pointer opacity-70 transition hover:opacity-100"
+                                style={({ isActive }) => ({
+                                    opacity: isActive && "1",
+                                })}
                             >
                                 Logs
                             </NavLink>
@@ -145,13 +136,10 @@ const Header = () => {
                         <li>
                             <NavLink
                                 to="/favorites"
-                                className="cursor-pointer transition opacity-70 hover:opacity-100"
-                                style={
-                                    ({ isActive }) => (
-                                        {
-                                            opacity: isActive && "1"
-                                        }
-                                    )}
+                                className="cursor-pointer opacity-70 transition hover:opacity-100"
+                                style={({ isActive }) => ({
+                                    opacity: isActive && "1",
+                                })}
                             >
                                 Favorites
                             </NavLink>
@@ -159,13 +147,10 @@ const Header = () => {
                         <li>
                             <NavLink
                                 to="/profile"
-                                className="cursor-pointer transition opacity-70 hover:opacity-100"
-                                style={
-                                    ({ isActive }) => (
-                                        {
-                                            opacity: isActive && "1"
-                                        }
-                                    )}
+                                className="cursor-pointer opacity-70 transition hover:opacity-100"
+                                style={({ isActive }) => ({
+                                    opacity: isActive && "1",
+                                })}
                             >
                                 Profile
                             </NavLink>
@@ -173,13 +158,10 @@ const Header = () => {
                         <li>
                             <NavLink
                                 to={isLoggedIn ? "/logout" : "/login"}
-                                className="cursor-pointer transition opacity-70 hover:opacity-100"
-                                style={
-                                    ({ isActive }) => (
-                                        {
-                                            opacity: isActive && "1"
-                                        }
-                                    )}
+                                className="cursor-pointer opacity-70 transition hover:opacity-100"
+                                style={({ isActive }) => ({
+                                    opacity: isActive && "1",
+                                })}
                                 onClick={() => {
                                     if (isLoggedIn) {
                                         setIsLoggedIn(false);
@@ -189,7 +171,9 @@ const Header = () => {
                                             method: "post",
                                             url: "api/auth/logout/",
                                             headers: {
-                                                "Authorization": `Token ${localStorage.getItem("token")}`,
+                                                Authorization: `Token ${localStorage.getItem(
+                                                    "token"
+                                                )}`,
                                             },
                                         });
                                     }

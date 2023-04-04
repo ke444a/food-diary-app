@@ -1,86 +1,159 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery, useMutation } from "react-query";
 import axios from "axios";
-import { faChevronRight, faCircleInfo, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+    faChevronRight,
+    faCircleInfo,
+    faXmarkCircle,
+    faSeedling,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-// import MealInfo from "./MealInfo";
-
+import MealInfo from "./MealInfo";
+import { useNavigate } from "react-router-dom";
 
 const Meal = (props) => {
+    const navigate = useNavigate();
     const [isActive, setIsActive] = useState(true);
     const [showInfoItem, setShowInfoItem] = useState(-1);
 
-    const {data: logsData, ...fetchResult} = useQuery(
-        {
-            queryKey: ["meal", props.mealType, props.date],
-            queryFn: () => axios.get("/api/logs/", 
-                { 
-                    params: { 
-                        user_id: props.userId, meal_type: props.mealType.toUpperCase(), date: props.date.toISOString().split("T")[0]
+    const { data: logsData, ...fetchResult } = useQuery({
+        queryKey: ["meal", props.mealType, props.date],
+        queryFn: () =>
+            axios
+                .get("/api/logs/", {
+                    params: {
+                        user_id: props.userId,
+                        meal_type: props.mealType.toUpperCase(),
+                        date: props.date.toISOString().split("T")[0],
                     },
                     headers: {
-                        "Authorization": `Token ${localStorage.getItem("token")}`
-                    }
-                }).then(res => res.data),
-        }
-    );
+                        Authorization: `Token ${localStorage.getItem("token")}`,
+                    },
+                })
+                .then((res) => res.data),
+        onError: (error) => {
+            if (error.response.status === 401) {
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                navigate("/login");
+            }
+        },
+    });
 
     const deleteLogMutation = useMutation({
-        mutationFn: (logId) => axios({
-            method: "DELETE",
-            url: `/api/logs/${logId}/`,
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("token")}`
-            }
-        }).then(res => res.data),
+        mutationFn: (logId) =>
+            axios({
+                method: "DELETE",
+                url: `/api/logs/${logId}/`,
+                headers: {
+                    Authorization: `Token ${localStorage.getItem("token")}`,
+                },
+            }).then((res) => res.data),
         onSuccess: () => {
             fetchResult.refetch();
-        }
+        },
     });
 
     return (
         <div>
-            <div 
-                className={`flex items-center justify-between p-2 bg-none rounded-sm border-[1px] border-dark cursor-pointer transition-color duration-300 ${isActive && "bg-table-header text-white-new"}`}
+            <div
+                className={`transition-color flex cursor-pointer items-center justify-between rounded-sm bg-none p-2 duration-300 ${
+                    isActive
+                        ? "bg-accordion-color text-white-new"
+                        : "border-[1px] border-dark"
+                }`}
                 onClick={() => setIsActive(!isActive)}
             >
                 <div className="flex items-start">
-                    <FontAwesomeIcon fixedWidth icon={props.icon} className="mr-1 text-base sm:text-lg" />
-                    <h3 className="font-heading font-medium text-sm sm:text-base">
+                    <FontAwesomeIcon
+                        fixedWidth
+                        icon={props.icon}
+                        className="mr-1 text-base sm:text-lg"
+                    />
+                    <h3 className="font-heading text-sm font-medium sm:text-base">
                         {props.mealType}
                     </h3>
                 </div>
-                <FontAwesomeIcon fixedWidth icon={faChevronRight} 
-                    className={`cursor-pointer transition-transform duration-300 min-[500px]:text-lg ${isActive && "rotate-90"}`} 
+                <FontAwesomeIcon
+                    fixedWidth
+                    icon={faChevronRight}
+                    className={`cursor-pointer transition-transform duration-300 min-[500px]:text-lg ${
+                        isActive && "rotate-90"
+                    }`}
                 />
             </div>
             {isActive && (
-                <div className="bg-white-new rounded-b-lg animate-fade-in mb-2 md:px-4">
+                <div className="mb-2 animate-fade-in rounded-b-lg bg-white-new">
                     <ul>
-                        {fetchResult.isSuccess && logsData.length > 0 && logsData.map((log, index) => {
-                            const food = log.meal;
-                            const isShowInfo = showInfoItem === index;
-                            return (
-                                <li className="flex flex-col p-2 md:px-4 border-b-[1px] border-dark/[.3] last:border-b-0" key={food.id}>
-                                    <div className="flex justify-between items-center">
-                                        <p 
-                                            className="text-sm min-[500px]:text-base cursor-pointer transition hover:underline"
-                                            onClick={() => setShowInfoItem(isShowInfo ? -1 : index)}
-                                        >
-                                            {food.meal_name}
-                                        </p>
-                                        <div className="flex items-center">
-                                            <p className="font-bold text-custom-green text-lg md:text-xl">{food.calories} cal</p>
-                                            <FontAwesomeIcon fixedWidth icon={faCircleInfo} className="fa-lg ml-3 md:ml-4 cursor-pointer transition-color hover:scale-105 hover:text-[#05668D]" onClick={() => setShowInfoItem(isShowInfo ? -1 : index)} />
-                                            <FontAwesomeIcon fixedWidth icon={faXmarkCircle} className="fa-lg ml-1 md:ml-2 cursor-pointer transition-color hover:scale-105 hover:text-custom-red" onClick={() => deleteLogMutation.mutate(log.id)} />
+                        {fetchResult.isSuccess &&
+                            logsData.length > 0 &&
+                            logsData.map((log, index) => {
+                                const food = log.meal;
+                                const isShowInfo = showInfoItem === index;
+                                return (
+                                    <li
+                                        className="flex flex-col border-b-[1px] border-dark/[.3] p-2 last:border-b-0"
+                                        key={food.id}
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            <div
+                                                className="flex cursor-pointer items-center"
+                                                onClick={() =>
+                                                    setShowInfoItem(
+                                                        isShowInfo ? -1 : index
+                                                    )
+                                                }
+                                            >
+                                                <FontAwesomeIcon
+                                                    fixedWidth
+                                                    icon={faSeedling}
+                                                    className="mr-1"
+                                                />
+                                                <p className="text-sm transition hover:underline min-[500px]:text-base">
+                                                    {food.meal_name}
+                                                </p>
+                                            </div>
+                                            <div className="flex items-center">
+                                                <p className="text-lg font-bold text-custom-green md:text-xl">
+                                                    {food.calories} cal
+                                                </p>
+                                                <FontAwesomeIcon
+                                                    fixedWidth
+                                                    icon={faCircleInfo}
+                                                    className="fa-lg transition-color ml-3 cursor-pointer hover:scale-105 hover:text-[#05668D] md:ml-4"
+                                                    onClick={() =>
+                                                        setShowInfoItem(
+                                                            isShowInfo
+                                                                ? -1
+                                                                : index
+                                                        )
+                                                    }
+                                                />
+                                                <FontAwesomeIcon
+                                                    fixedWidth
+                                                    icon={faXmarkCircle}
+                                                    className="fa-lg transition-color ml-1 cursor-pointer hover:scale-105 hover:text-custom-red md:ml-2"
+                                                    onClick={() =>
+                                                        deleteLogMutation.mutate(
+                                                            log.id
+                                                        )
+                                                    }
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                    {/* {isShowInfo && <MealInfo food={food} />} */}
-                                </li>
-                            );
-                        })}
+                                        {isShowInfo && (
+                                            <MealInfo
+                                                food={food}
+                                                setShowInfoItem={
+                                                    setShowInfoItem
+                                                }
+                                            />
+                                        )}
+                                    </li>
+                                );
+                            })}
                     </ul>
-                </div> 
+                </div>
             )}
         </div>
     );

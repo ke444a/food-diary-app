@@ -12,7 +12,8 @@ const MealAccordion = (props) => {
                         icon={data.icon}
                         userId={props.userId}
                         date={props.date}
-                    />);
+                    />
+                );
             })}
         </div>
     );
