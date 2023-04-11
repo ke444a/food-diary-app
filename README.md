@@ -27,11 +27,16 @@ Moreover, this project makes use of local storage to handle the user's authentic
 - Progressive Web App (PWA) support
 
 ## Demonstration
-### [View the website]()
+https://user-images.githubusercontent.com/81090139/231104954-5c1d3795-0505-44bb-ad21-76a38d00a5a4.mp4
 
-<img src="https://user-images.githubusercontent.com/81090139/218794217-3c93a057-c9f9-4c1e-8ac3-885d6e293840.png" width="60%" height="50%" />
-<img src="https://user-images.githubusercontent.com/81090139/218795344-5d2eaea1-f3d6-4fad-a034-8cbc02c345a8.png" width="60%" height="50%" />
-<img src="https://user-images.githubusercontent.com/81090139/218801554-4574e649-44cf-4d5c-9b3f-64689d74de8d.png" width="60%" height="50%" />
+#### Logs page
+<img src="https://user-images.githubusercontent.com/81090139/231103697-09438aa6-c195-4cb3-90ce-ea5223dbefd5.png" width="60%" height="50%" />
+
+#### Favorites page
+<img src="https://user-images.githubusercontent.com/81090139/231104542-234a4ab5-144d-408d-84da-ca3a87f83456.png" width="60%" height="50%" />
+
+#### Profile page
+<img src="https://user-images.githubusercontent.com/81090139/231104716-edef7650-63cc-44e8-97db-10c161283acf.png" width="60%" height="50%" />
 
 ## Technologies
 * ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -40,7 +45,7 @@ Moreover, this project makes use of local storage to handle the user's authentic
 * ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 * ![React Hook Form](https://img.shields.io/badge/React_Hook_Form-0088CC?style=for-the-badge&logo=react-hook-form&logoColor=white)
 * ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-* ![Python] (https://img.shields.io/badge/python-%2314354C.svg?style=for-the-badge&logo=python&logoColor=white)
+* ![Python](https://img.shields.io/badge/python-%2314354C.svg?style=for-the-badge&logo=python&logoColor=white)
 * ![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)
 
 ## Setup
