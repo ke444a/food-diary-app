@@ -72,6 +72,10 @@ Run the application:
 ```bash
 # Run the frontend
 $ cd food-diary-app/react-frontend/
+$ npm run build
+$ npm run preview
+
+# Dev mode:
 $ npm run dev
 
 # Run the Django server
