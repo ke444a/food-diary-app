@@ -30,7 +30,6 @@ const App = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/logout" element={<Logout />} />
-                {/* <Route path="*" element={<ErrorPage />} /> */}
             </Routes>
         </div>
     );

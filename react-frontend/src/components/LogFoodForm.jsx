@@ -30,7 +30,7 @@ const FoodForm = (props) => {
             }),
         onSuccess: () => {
             queryClient.invalidateQueries(["meal"]);
-            queryClient.invalidateQueries(["logs", props.date, props.userId]);
+            queryClient.invalidateQueries(["logs", props.date]);
         },
     });
 

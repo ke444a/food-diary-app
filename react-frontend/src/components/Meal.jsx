@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useQuery, useMutation } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 import {
     faChevronRight,
@@ -15,6 +15,7 @@ const Meal = (props) => {
     const navigate = useNavigate();
     const [isActive, setIsActive] = useState(true);
     const [showInfoItem, setShowInfoItem] = useState(-1);
+    const queryClient = useQueryClient();
 
     const { data: logsData, ...fetchResult } = useQuery({
         queryKey: ["meal", props.mealType, props.date],
@@ -51,6 +52,7 @@ const Meal = (props) => {
             }).then((res) => res.data),
         onSuccess: () => {
             fetchResult.refetch();
+            queryClient.invalidateQueries(["logs", props.date]);
         },
     });
 
