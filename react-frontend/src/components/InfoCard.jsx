@@ -77,6 +77,7 @@ const InfoCard = (props) => {
                 <img
                     className="mb-2 h-20 w-20 self-center rounded-[50%] object-cover min-[500px]:h-auto min-[500px]:w-auto md:mb-3 md:h-40 md:w-40 lg:h-48 lg:w-48"
                     src={props.user.profile_img}
+                    alt="Profile image"
                 />
                 <h1 className="mb-4 hidden font-heading text-base font-medium min-[500px]:block md:text-lg lg:text-xl">
                     {props.fullName}

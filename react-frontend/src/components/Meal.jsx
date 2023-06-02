@@ -59,9 +59,9 @@ const Meal = (props) => {
     return (
         <div>
             <div
-                className={`transition-color flex cursor-pointer items-center justify-between rounded-sm bg-none p-2 duration-300 ${
+                className={`transition-color flex cursor-pointer items-center justify-between rounded-sm bg-none p-2 duration-300 mb-1 ${
                     isActive
-                        ? "bg-accordion-color text-white-new"
+                        ? "drop-shadow-xl bg-white-new"
                         : "border-[1px] border-dark"
                 }`}
                 onClick={() => setIsActive(!isActive)}
@@ -85,7 +85,7 @@ const Meal = (props) => {
                 />
             </div>
             {isActive && (
-                <div className="mb-2 animate-fade-in rounded-b-lg bg-white-new">
+                <div className="mb-2 animate-fade-in rounded-b-lg bg-[#E1E6EC]">
                     <ul>
                         {fetchResult.isSuccess &&
                             logsData.length > 0 &&

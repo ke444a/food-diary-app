@@ -18,7 +18,6 @@ module.exports = {
             colors: {
                 "white-new": "#F9F4F4",
                 dark: "#141010",
-                "accordion-color": "#A49787",
                 background: "#ECE7E1",
                 form: "#917BA9",
                 "custom-green": "#13620C",

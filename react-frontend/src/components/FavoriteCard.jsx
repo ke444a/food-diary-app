@@ -1,7 +1,7 @@
 import foodPlaceholder from "../assets/food-placeholder.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faPlus,
+    faSquarePlus,
     faPenToSquare,
     faTrash,
 } from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +18,7 @@ const FavoriteCard = (props) => {
             <h4 className="mb-1 cursor-pointer font-heading text-sm font-bold leading-4 md:text-base md:leading-5">
                 {props.favorite.meal.meal_name}
             </h4>
-            <div className="mb-2 flex justify-between border-y-2 border-dark border-opacity-30 py-1 text-sm sm:mb-3">
+            <div className="mb-1 flex justify-between border-y-2 border-dark border-opacity-30 py-1 text-sm">
                 <div className="flex flex-col justify-end space-y-1 sm:space-y-2">
                     <p>Serving size: </p>
                     <p>Serving weight: </p>
@@ -46,9 +46,9 @@ const FavoriteCard = (props) => {
                     </p>
                 </div>
             </div>
-            <div className="flex justify-between">
+            <div className="flex justify-around">
                 <button
-                    className="favorites-btn transition-color cursor-pointer items-center rounded-md border-[1px] border-dark p-1 duration-300 hover:border-custom-green hover:text-custom-green sm:py-2"
+                    className="favorites-btn transition-color cursor-pointer items-center rounded-md p-1 duration-300 hover:border-custom-green hover:text-custom-green sm:py-2"
                     onClick={() => {
                         props.setIsLogFormOpen(true);
                         props.setFavoriteToLog(props.favorite);
@@ -56,13 +56,12 @@ const FavoriteCard = (props) => {
                 >
                     <FontAwesomeIcon
                         fixedWidth
-                        className="fa-sm"
-                        icon={faPlus}
+                        className="fa-lg"
+                        icon={faSquarePlus}
                     />
-                    <span className="text-sm">Log</span>
                 </button>
                 <button
-                    className="favorites-btn transition-color cursor-pointer items-center rounded-md border-[1px] border-dark p-1 duration-300 hover:border-[#EA7317] hover:text-[#EA7317] sm:py-2"
+                    className="favorites-btn transition-color cursor-pointer items-center rounded-md p-1 duration-300 hover:border-[#EA7317] hover:text-[#EA7317] sm:py-2"
                     onClick={() => {
                         props.setIsEditFormOpen(true);
                         props.setFavoriteToEdit(props.favorite);
@@ -70,23 +69,21 @@ const FavoriteCard = (props) => {
                 >
                     <FontAwesomeIcon
                         fixedWidth
-                        className="fa-sm"
+                        className="fa-lg"
                         icon={faPenToSquare}
                     />
-                    <span className="text-sm">Edit</span>
                 </button>
                 <button
-                    className="transition-color cursor-pointer items-center rounded-md border-[1px] border-dark p-1 duration-300 hover:border-custom-red hover:text-custom-red sm:py-2"
+                    className="transition-color cursor-pointer items-center rounded-md p-1 duration-300 hover:border-custom-red hover:text-custom-red sm:py-2"
                     onClick={() =>
                         props.deleteFavoriteMutation.mutate(props.favorite.id)
                     }
                 >
                     <FontAwesomeIcon
                         fixedWidth
-                        className="fa-sm"
+                        className="fa-lg"
                         icon={faTrash}
                     />
-                    <span className="text-sm">Delete</span>
                 </button>
             </div>
         </div>

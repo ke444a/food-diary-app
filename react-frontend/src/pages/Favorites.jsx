@@ -146,13 +146,13 @@ const Favorites = () => {
     return (
         <main className="flex-grow pt-4 md:pt-10 2xl:pt-12">
             <div className="container">
-                <h1 className="mb-5 inline-block border-b-2 border-dark font-heading text-lg font-bold sm:text-2xl 2xl:text-4xl">
+                <h1 className="mb-5 border-b-2 border-dark font-heading text-lg font-bold sm:text-2xl 2xl:text-4xl hidden min-[450px]:inline-block">
                     My Favorite Foods
                 </h1>
-                <div className="mb-5">
+                <div className="mb-5 max-[450px]:flex max-[450px]:flex-col max-[450px]:items-center">
                     <button
                         onClick={() => setIsAddFormOpen(true)}
-                        className="favorites-btn mb-3 inline-block rounded-md border-2 border-dark bg-white-new p-2 text-sm font-bold transition-transform hover:scale-110 min-[500px]:text-base"
+                        className="favorites-btn mb-3 inline-block rounded-md border-2 border-dark bg-white-new p-2 text-sm font-bold transition-transform hover:scale-110 min-[450px]:text-base"
                     >
                         <FontAwesomeIcon
                             className="mr-2 text-custom-green sm:text-lg"
@@ -181,7 +181,7 @@ const Favorites = () => {
                         />
                     )}
                     {favoritesRes.isSuccess && favorites.length > 0 ? (
-                        <div className="flex flex-col flex-wrap items-center justify-center gap-x-2 gap-y-3 min-[500px]:flex-row min-[500px]:items-start min-[500px]:justify-start sm:gap-y-4">
+                        <div className="flex flex-col flex-wrap items-center justify-center gap-x-2 gap-y-3 min-[450px]:flex-row min-[450px]:items-start min-[450px]:justify-start sm:gap-y-4">
                             {favorites.map((favorite) => (
                                 <FavoriteCard
                                     key={favorite.id}

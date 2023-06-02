@@ -38,7 +38,7 @@ const Header = () => {
             <div className="container">
                 <nav className="flex items-center justify-between sm:py-1 md:py-2 2xl:py-3">
                     <Link to="/" className="flex cursor-pointer items-center ">
-                        <img src={logo} className="mr-1 h-16 w-16 sm:mr-3" />
+                        <img src={logo} className="mr-1 h-16 w-16 sm:mr-3" alt="Icon" />
                         <h2 className="font-heading text-base font-bold leading-4 transition sm:text-lg sm:leading-5 2xl:text-xl 2xl:leading-6">
                             Food
                             <br />
