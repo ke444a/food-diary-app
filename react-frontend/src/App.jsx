@@ -5,7 +5,6 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Favorites from "./pages/Favorites";
 import Logout from "./pages/Logout";
-// import ErrorPage from "./pages/ErrorPage";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
