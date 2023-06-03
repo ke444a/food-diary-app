@@ -2,6 +2,6 @@ app_env/
 node_modules/
 __pycache__/
 media/
-!media/profile_images/default.jpg
+!media/profile_images/default.webp
 .env
 .vscode/

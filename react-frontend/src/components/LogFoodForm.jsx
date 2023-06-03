@@ -1,9 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import { useMutation, useQueryClient } from "react-query";
 import { useForm } from "react-hook-form";
+import { customAxios } from "../customAxios";
 
 const FoodForm = (props) => {
     const {
@@ -23,7 +23,7 @@ const FoodForm = (props) => {
     const queryClient = useQueryClient();
     const foodMutation = useMutation({
         mutationFn: (formData) =>
-            axios.post("/api/logs/", formData, {
+            customAxios.post("/logs/", formData, {
                 headers: {
                     Authorization: `Token ${localStorage.getItem("token")}`,
                 },

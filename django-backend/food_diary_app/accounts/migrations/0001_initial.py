@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('first_name', models.CharField(max_length=50)),
                 ('last_name', models.CharField(max_length=50)),
                 ('calories_goal', models.IntegerField(default=2000)),
-                ('profile_img', models.ImageField(default='profile_images/default.jpg', upload_to=food_diary_app.accounts.models.upload_to)),
+                ('profile_img', models.ImageField(default='profile_images/default.webp', upload_to=food_diary_app.accounts.models.upload_to)),
                 ('is_staff', models.BooleanField(default=False)),
                 ('is_active', models.BooleanField(default=True)),
                 ('groups', models.ManyToManyField(blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', related_name='user_set', related_query_name='user', to='auth.group', verbose_name='groups')),

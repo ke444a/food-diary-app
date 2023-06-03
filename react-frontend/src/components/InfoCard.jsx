@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useState } from "react";
-import axios from "axios";
+import { customAxios } from "../customAxios";
+import defaultAvatar from "../assets/user-img.webp";
 
 const InfoCard = (props) => {
     const [caloriesTotal, setCaloriesTotal] = useState(0);
@@ -14,8 +15,8 @@ const InfoCard = (props) => {
     const fetchResult = useQuery({
         queryKey: ["logs", props.date, props.user.id],
         queryFn: () =>
-            axios
-                .get("/api/logs/", {
+            customAxios
+                .get("/logs/", {
                     params: {
                         user_id: props.user.id,
                         date: props.date.toISOString().split("T")[0],
@@ -76,7 +77,7 @@ const InfoCard = (props) => {
                 </Link>
                 <img
                     className="mb-2 h-20 w-20 self-center rounded-[50%] object-cover min-[500px]:h-auto min-[500px]:w-auto md:mb-3 md:h-40 md:w-40 lg:h-48 lg:w-48"
-                    src={props.user.profile_img}
+                    src={props.user?.profile_img || defaultAvatar}
                     alt="Profile image"
                 />
                 <h1 className="mb-4 hidden font-heading text-base font-medium min-[500px]:block md:text-lg lg:text-xl">

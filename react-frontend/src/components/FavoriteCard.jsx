@@ -1,4 +1,4 @@
-import foodPlaceholder from "../assets/food-placeholder.jpg";
+import foodPlaceholder from "../assets/food-placeholder.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faSquarePlus,

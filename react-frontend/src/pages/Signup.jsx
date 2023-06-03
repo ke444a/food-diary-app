@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect, useRef, useState } from "react";
 import ErrorMessage from "../components/ErrorMessage";
+import { customAxios } from "../customAxios";
 
 const Signup = () => {
     const [profileImg, setProfileImg] = useState(null);
@@ -17,8 +17,8 @@ const Signup = () => {
     } = useForm();
     const signupMutation = useMutation({
         mutationFn: (formData) =>
-            axios
-                .post("/api/auth/register/", formData, {
+            customAxios
+                .post("/auth/register/", formData, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },

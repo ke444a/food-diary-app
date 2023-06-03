@@ -1,5 +1,4 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
@@ -7,6 +6,7 @@ import ManageFavoritesForm from "../components/ManageFavoritesForm";
 import LogFavoritesForm from "../components/LogFavoritesForm";
 import { useNavigate } from "react-router-dom";
 import FavoriteCard from "../components/FavoriteCard";
+import { customAxios } from "../customAxios";
 
 const Favorites = () => {
     const [user, setUser] = useState(null);
@@ -48,8 +48,8 @@ const Favorites = () => {
 
     const { data: favorites, ...favoritesRes } = useQuery({
         queryFn: () =>
-            axios
-                .get("/api/favorites/", {
+            customAxios
+                .get("/favorites/", {
                     headers: {
                         Authorization: `Token ${localStorage.getItem("token")}`,
                     },
@@ -70,9 +70,9 @@ const Favorites = () => {
 
     const deleteFavoriteMutation = useMutation({
         mutationFn: (id) =>
-            axios({
+            customAxios({
                 method: "DELETE",
-                url: `/api/favorites/${id}/`,
+                url: `/favorites/${id}/`,
                 headers: {
                     Authorization: `Token ${localStorage.getItem("token")}`,
                 },
@@ -85,9 +85,9 @@ const Favorites = () => {
     const editFavoriteMutation = useMutation({
         mutationFn: (data) => {
             const { id, ...updatedData } = data;
-            return axios({
+            return customAxios({
                 method: "PUT",
-                url: `/api/favorites/${id}/`,
+                url: `/favorites/${id}/`,
                 data: {
                     user: user.id,
                     ...updatedData,
@@ -104,9 +104,9 @@ const Favorites = () => {
 
     const addFavoriteMutation = useMutation({
         mutationFn: (data) =>
-            axios({
+            customAxios({
                 method: "POST",
-                url: "/api/favorites/",
+                url: "/favorites/",
                 data: {
                     user: user.id,
                     ...data,
@@ -122,9 +122,9 @@ const Favorites = () => {
 
     const logFavoriteMutation = useMutation({
         mutationFn: (data) =>
-            axios({
+            customAxios({
                 method: "POST",
-                url: "/api/logs/",
+                url: "/logs/",
                 data: {
                     user: user.id,
                     date: new Date().toISOString().split("T")[0],

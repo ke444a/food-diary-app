@@ -13,7 +13,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     calories_goal = models.IntegerField(default=2000)
-    profile_img = models.ImageField(upload_to=upload_to, default='profile_images/default.jpg')
+    profile_img = models.ImageField(upload_to=upload_to, default='profile_images/default.webp')
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 

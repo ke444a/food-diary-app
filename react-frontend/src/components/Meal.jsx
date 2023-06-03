@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import axios from "axios";
+import { customAxios } from "../customAxios";
 import {
     faChevronRight,
     faCircleInfo,
@@ -20,8 +20,8 @@ const Meal = (props) => {
     const { data: logsData, ...fetchResult } = useQuery({
         queryKey: ["meal", props.mealType, props.date],
         queryFn: () =>
-            axios
-                .get("/api/logs/", {
+            customAxios
+                .get("/logs/", {
                     params: {
                         user_id: props.userId,
                         meal_type: props.mealType.toUpperCase(),
@@ -43,9 +43,9 @@ const Meal = (props) => {
 
     const deleteLogMutation = useMutation({
         mutationFn: (logId) =>
-            axios({
+            customAxios({
                 method: "DELETE",
-                url: `/api/logs/${logId}/`,
+                url: `/logs/${logId}/`,
                 headers: {
                     Authorization: `Token ${localStorage.getItem("token")}`,
                 },

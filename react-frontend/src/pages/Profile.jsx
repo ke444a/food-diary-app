@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
+import { customAxios } from "../customAxios";
 
 const Profile = () => {
     const [user, setUser] = useState(() =>
@@ -32,8 +32,8 @@ const Profile = () => {
 
     const profileMutation = useMutation({
         mutationFn: (formData) =>
-            axios
-                .put(`/api/auth/update_profile/${user.id}/`, formData, {
+            customAxios
+                .put(`/auth/update_profile/${user.id}/`, formData, {
                     headers: {
                         Authorization: `Token ${localStorage.getItem("token")}`,
                         "Content-Type": "multipart/form-data",
