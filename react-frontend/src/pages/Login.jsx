@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
-import loginImg from "../assets/login-img.png";
-import axios from "axios";
+import loginImg from "../assets/login-img.webp";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import ErrorMessage from "../components/ErrorMessage";
+import { customAxios } from "../customAxios";
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const loginMutation = useMutation({
         mutationFn: (formData) =>
-            axios
-                .post("/api/auth/login/", formData)
+            customAxios
+                .post("/auth/login/", formData)
                 .then((response) => response.data),
         onSuccess: (data) => {
             localStorage.setItem("token", data.token);

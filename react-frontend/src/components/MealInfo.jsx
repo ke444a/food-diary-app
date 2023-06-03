@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import foodPlaceholder from "../assets/food-placeholder.jpg";
+import foodPlaceholder from "../assets/food-placeholder.webp";
 
 const MealInfo = ({ food, setShowInfoItem }) => {
     return (

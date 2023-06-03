@@ -1,8 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Fade as Hamburger } from "hamburger-react";
-import logo from "../assets/header-logo.png";
-import axios from "axios";
+import logo from "../assets/header-logo.webp";
+import { customAxios } from "../customAxios";
 
 const Header = () => {
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
@@ -101,9 +101,9 @@ const Header = () => {
                                             setIsLoggedIn(false);
                                             localStorage.removeItem("user");
                                             localStorage.removeItem("token");
-                                            axios({
+                                            customAxios({
                                                 method: "post",
-                                                url: "api/auth/logout/",
+                                                url: "/auth/logout/",
                                                 headers: {
                                                     Authorization: `Token ${localStorage.getItem(
                                                         "token"
@@ -167,9 +167,9 @@ const Header = () => {
                                         setIsLoggedIn(false);
                                         localStorage.removeItem("user");
                                         localStorage.removeItem("token");
-                                        axios({
+                                        customAxios({
                                             method: "post",
-                                            url: "api/auth/logout/",
+                                            url: "/auth/logout/",
                                             headers: {
                                                 Authorization: `Token ${localStorage.getItem(
                                                     "token"
