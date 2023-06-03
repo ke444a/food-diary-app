@@ -27,16 +27,18 @@ Moreover, this project makes use of local storage to handle the user's authentic
 - Progressive Web App (PWA) support
 
 ## Demonstration
+### [View the website](https://food-diary-app.onrender.com/)
+
 https://user-images.githubusercontent.com/81090139/231104954-5c1d3795-0505-44bb-ad21-76a38d00a5a4.mp4
 
 #### Logs page
-<img src="https://user-images.githubusercontent.com/81090139/231103697-09438aa6-c195-4cb3-90ce-ea5223dbefd5.png" width="60%" height="50%" />
+<img src="https://github.com/ke444a/food-diary-app/assets/81090139/0047a1cb-118e-42e9-b742-25a73acf67c7" width="60%" height="50%">
 
 #### Favorites page
-<img src="https://user-images.githubusercontent.com/81090139/231104542-234a4ab5-144d-408d-84da-ca3a87f83456.png" width="60%" height="50%" />
+<img src="https://github.com/ke444a/food-diary-app/assets/81090139/fa6275ba-a53c-4e50-86fc-91f17af465be" width="60%" height="50%">
 
 #### Profile page
-<img src="https://user-images.githubusercontent.com/81090139/231104716-edef7650-63cc-44e8-97db-10c161283acf.png" width="60%" height="50%" />
+<img src="https://github.com/ke444a/food-diary-app/assets/81090139/09964232-7996-4e1b-9fb7-55be475745ff" width="60%" height="50%">
 
 ## Technologies
 * ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -65,7 +67,12 @@ $ cd food-diary-app/react-frontend/
 $ npm install
 
 # Install the necessary packages for backend
-$ cd film-fiesta-movie-application/backend/
+$ cd food-diary-app/django-backend/
+
+# Create and activate virtual environment
+$ python3 -m venv my_env
+$ source my_env/bin/activate
+
 $ pip install -r requirements.txt
 ```
 Run the application:
