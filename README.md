@@ -90,7 +90,7 @@ $ cd food-diary-app/django-backend/
 $ python manage.py runserver
 ```
 ### Environment Variables
-Create a `.env` file in the root directory of the project 
+Create a `.env` file in the "django-backend/" directory 
 ```bash
 $ touch .env
 ```
@@ -104,7 +104,7 @@ SECRET_KEY=YOUR_SECRET_KEY
 APP_ID=YOUR_APP_ID
 APP_KEY=YOUR_APP_KEY
 
-DEFAULT_MEAL_IMAGE_URL=https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80
+DEFAULT_MEAL_IMAGE_URL=https://images.unsplash.com/photo-1546069901-ba9599a7e63c
 ```
 ## Contact
 - LinkedIn: [Danyl Kecha](https://www.linkedin.com/in/danylkecha/)
