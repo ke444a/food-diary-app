@@ -32,7 +32,7 @@ Moreover, this project makes use of local storage to handle the user's authentic
 https://user-images.githubusercontent.com/81090139/231104954-5c1d3795-0505-44bb-ad21-76a38d00a5a4.mp4
 
 #### Logs page
-<img src="https://github.com/ke444a/food-diary-app/assets/81090139/0047a1cb-118e-42e9-b742-25a73acf67c7" width="60%" height="50%">
+<img src="https://github.com/ke444a/food-diary-app/assets/81090139/f5875cd8-ea68-4564-a9e5-d7b3967c35ef" width="60%" height="50%" >
 
 #### Favorites page
 <img src="https://github.com/ke444a/food-diary-app/assets/81090139/fa6275ba-a53c-4e50-86fc-91f17af465be" width="60%" height="50%">
